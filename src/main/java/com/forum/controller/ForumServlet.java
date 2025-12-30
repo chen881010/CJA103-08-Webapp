@@ -282,7 +282,8 @@ public class ForumServlet extends HttpServlet{
 			Part pic = req.getPart("forumPic");
 
 			if (pic == null || pic.getSize() == 0) {
-			    errorMsgs.add("請新增圖片");
+				ForumService forumSvc = new ForumService();
+			    forumPic = forumSvc.getForumPic(forumId);    
 			} else {
 			    String contentType = pic.getContentType();
 			    if (contentType == null || !contentType.startsWith("image/")) {
