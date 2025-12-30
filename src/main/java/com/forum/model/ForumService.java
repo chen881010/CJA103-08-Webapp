@@ -22,7 +22,7 @@ public class ForumService {
 		return forumVO;
 	}
 	
-public ForumVO updateForum(Integer forumId, String forumName, byte[] forumPic){
+	public ForumVO updateForum(Integer forumId, String forumName, byte[] forumPic){
 		
 		ForumVO forumVO = new ForumVO();
 		
