@@ -9,7 +9,7 @@ public interface ForumDAO_interface {
 	public void update(ForumVO forumVO);
 	public void updateStatus(ForumVO forumVO);
 	public byte[] getPicture(Integer forumId);
-	public List<ForumVO> searchByForumName(String forum_name);
+	public List<ForumVO> searchByForumName(String forumName);
 	public List<ForumVO> getAllActive();
 	public List<ForumVO> getAll();
 	
