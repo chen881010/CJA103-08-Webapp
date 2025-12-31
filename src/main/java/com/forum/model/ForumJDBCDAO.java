@@ -53,8 +53,7 @@ public class ForumJDBCDAO implements ForumDAO_interface {
 			pstmt.setBytes(2, forumVO.getForumPic());
 			
 			pstmt.executeUpdate();
-			
-			
+					
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());

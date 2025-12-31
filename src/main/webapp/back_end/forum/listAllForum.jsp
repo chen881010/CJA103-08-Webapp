@@ -82,12 +82,12 @@ pageContext.setAttribute("forumList", forumList);
 				</form>
 			</td>
 			<td>
-				<FORM method="post" action="<%=request.getContextPath()%>/forum/forum.do" style="margin-bottom: 0px;">
+				<form method="post" action="<%=request.getContextPath()%>/forum/forum.do" style="margin-bottom: 0px;">
 			    	<input type="submit" value="停用">
 			    	<input type="hidden" name="forumId" value="${forumVO.forumId}">
 			    	<input type="hidden" name="forumStatus" value="${forumVO.forumStatus}">
 			    	<input type="hidden" name="action" value="getForumIdForDisable">
-			    </FORM>
+			    </form>
 			</td>
 		</tr>
 	</c:forEach>

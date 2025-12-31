@@ -15,11 +15,12 @@ public class ForumVO implements Serializable{
 		super();
 	}
 	
-	public ForumVO(Integer forumId, String forumName, Timestamp createdAt, Integer forumStatus) {
+	public ForumVO(Integer forumId, String forumName, Timestamp createdAt, byte[] forumPic, Integer forumStatus) {
 		super();
 		this.forumId = forumId;
 		this.forumName = forumName;
 		this.createdAt = createdAt;
+		this.forumPic = forumPic;
 		this.forumStatus = forumStatus;
 	}
 
