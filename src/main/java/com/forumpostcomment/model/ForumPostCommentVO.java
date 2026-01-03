@@ -3,15 +3,41 @@ package com.forumpostcomment.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "forumpostcomment")
 public class ForumPostCommentVO implements Serializable{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "COMMENT_ID", updatable = false)
 	private Integer commentId;
+	
+	@Column(name = "MEM_ID", updatable = false)
 	private Integer memId;
+	
+	@Column(name = "POST_ID", updatable = false)
 	private Integer postId;
+	
+	@Column(name = "COMMENT_CONTENT")
 	private String commentContent;
+	
+	@Column(name = "COMMENT_PIC", columnDefinition = "longblob")
 	private byte[] commentPic;
+	
+	@Column(name = "CREATED_AT", updatable = false, insertable = false)
 	private Timestamp createdAt;
+	
+	@Column(name = "LAST_EDITED_AT", insertable = false)
 	private Timestamp lastEditedAt;
+	
+	@Column(name = "COMMENT_STATUS", insertable = false)
 	private Integer commentStatus;
 	
 	public ForumPostCommentVO() {

@@ -1,17 +1,44 @@
 package com.forumcommentreport.model;
 
 import java.io.Serializable;
+
 import java.sql.Timestamp;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "forumcommentreport")
 public class ForumCommentReportVO implements Serializable{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "REPORT_ID", updatable = false)
 	private Integer reportId;
+	
+	@Column(name = "MEM_ID", updatable = false)
 	private Integer memId;
+	
+	@Column(name = "COMMENT_ID", updatable = false)
 	private Integer commentId;
+	
+	@Column(name = "REPORT_TYPE")
 	private Integer reportType;
+	
+	@Column(name = "REPORT_REASON")
 	private String reportReason;
+	
+	@Column(name = "REPORT_STATUS", insertable = false)
 	private Integer reportStatus;
+	
+	@Column(name = "REPORT_TIME", insertable = false)
 	private Timestamp reportTime;
+	
+	@Column(name = "HANDLE_TIME", insertable = false)
 	private Timestamp handleTime;
 	
 	public ForumCommentReportVO() {

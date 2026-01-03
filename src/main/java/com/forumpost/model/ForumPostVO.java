@@ -3,16 +3,44 @@ package com.forumpost.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "forumpost")
 public class ForumPostVO implements Serializable{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "POST_ID", updatable = false)
 	private Integer postId;
+	
+	@Column(name = "MEM_ID", updatable = false)
 	private Integer memId;
+	
+	@Column(name = "FORUM_ID", updatable = false)
 	private Integer forumId;
+	
+	@Column(name = "POST_TITLE")
 	private String postTitle;
+	
+	@Column(name = "POST_CONTENT")
 	private String postContent;
+	
+	@Column(name = "POST_PIC", columnDefinition = "longblob")
 	private byte[] postPic;
+	
+	@Column(name = "CREATED_AT", insertable = false, updatable = false)
 	private Timestamp createdAt;
+	
+	@Column(name = "LAST_EDITED_AT", insertable = false)
 	private Timestamp lastEditedAt;
+	
+	@Column(name = "POST_STATUS", insertable = false)
 	private Integer postStatus;
 	
 	public ForumPostVO() {
