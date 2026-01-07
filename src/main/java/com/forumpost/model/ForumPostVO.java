@@ -29,83 +29,91 @@ public class ForumPostVO implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "POST_ID", updatable = false)
+	@Column(name = "post_id", updatable = false)
 	private Integer postId;
 	
-	@Column(name = "MEM_ID", updatable = false)
+	@Column(name = "mem_id", updatable = false)
 	private Integer memId;
 	
 	@ManyToOne
-	@JoinColumn(name = "FORUM_ID", referencedColumnName = "FORUM_ID")
-	private ForumVO forumVO;
+	@JoinColumn(name = "forum_id", referencedColumnName = "forum_id")
+	private ForumVO forum;
 	
-//	@Column(name = "FORUM_ID", updatable = false)
+//	@Column(name = "forum_id", updatable = false)
 //	private Integer forumId;
 	
-	@Column(name = "POST_TITLE")
+	@Column(name = "post_title")
 	private String postTitle;
 	
-	@Column(name = "POST_CONTENT")
+	@Column(name = "post_content")
 	private String postContent;
 	
-	@Column(name = "POST_PIC", columnDefinition = "longblob")
+	@Column(name = "post_pic", columnDefinition = "longblob")
 	private byte[] postPic;
 	
-	@Column(name = "CREATED_AT", insertable = false, updatable = false)
+	@Column(name = "created_at", insertable = false, updatable = false)
 	private Timestamp createdAt;
 	
-	@Column(name = "LAST_EDITED_AT", insertable = false)
+	@Column(name = "last_edited_at", insertable = false)
 	private Timestamp lastEditedAt;
 	
-	@Column(name = "POST_STATUS", insertable = false)
+	@Column(name = "post_status", insertable = false)
 	private Integer postStatus;
 	
-	@OneToMany(mappedBy = "forumPostVO")
+	@OneToMany(mappedBy = "forumPost")
 	@OrderBy("picId asc")
-	private Set<ForumPostPicVO> forumPostPicVO;
+	private Set<ForumPostPicVO> forumPostPic;
 	
-	@OneToMany(mappedBy = "forumPostVO")
+	@OneToMany(mappedBy = "forumPost")
 	@OrderBy("commentId asc")
-	private Set<ForumPostCommentVO> forumPostCommentVO;
+	private Set<ForumPostCommentVO> forumPostComment;
 	
-	@OneToMany(mappedBy = "forumPostVO", cascade = CascadeType.REFRESH)
+	@OneToMany(mappedBy = "forumPost", cascade = CascadeType.ALL)
 	@OrderBy("reportId asc")
-	private Set<ForumPostReportVO> forumPostReportVO;
+	private Set<ForumPostReportVO> forumPostReport;
 	
 //	@ManyToMany
 //	@JoinTable(
 //			   name = "forumpostcollection",
-//			   joinColumns = { @JoinColumn( name = "POST_ID", referencedColumnName = "POST_ID" ) },
-//			   inverseJoinColumns = { @JoinColumn( name = "MEM_ID", referencedColumnName = "MEM_ID") }
+//			   joinColumns = { @JoinColumn( name = "post_id", referencedColumnName = "post_id" ) },
+//			   inverseJoinColumns = { @JoinColumn( name = "mem_id", referencedColumnName = "mem_id") }
 //			  )
 //	private Set<> members;
 	
 	public ForumPostVO() {
 		super();
 	}
-	
-	public Set<ForumPostReportVO> getForumPostReportVO() {
-		return forumPostReportVO;
+
+	public ForumVO getForum() {
+		return forum;
 	}
 
-	public void setForumPostReportVO(Set<ForumPostReportVO> forumPostReportVO) {
-		this.forumPostReportVO = forumPostReportVO;
+	public void setForum(ForumVO forum) {
+		this.forum = forum;
 	}
 
-	public Set<ForumPostCommentVO> getForumPostCommentVO() {
-		return forumPostCommentVO;
+	public Set<ForumPostPicVO> getForumPostPic() {
+		return forumPostPic;
 	}
 
-	public void setForumPostCommentVO(Set<ForumPostCommentVO> forumPostCommentVO) {
-		this.forumPostCommentVO = forumPostCommentVO;
-	}
-	
-	public Set<ForumPostPicVO> getForumPostPicVO() {
-		return forumPostPicVO;
+	public void setForumPostPic(Set<ForumPostPicVO> forumPostPic) {
+		this.forumPostPic = forumPostPic;
 	}
 
-	public void setForumPostPicVO(Set<ForumPostPicVO> forumPostPicVO) {
-		this.forumPostPicVO = forumPostPicVO;
+	public Set<ForumPostCommentVO> getForumPostComment() {
+		return forumPostComment;
+	}
+
+	public void setForumPostComment(Set<ForumPostCommentVO> forumPostComment) {
+		this.forumPostComment = forumPostComment;
+	}
+
+	public Set<ForumPostReportVO> getForumPostReport() {
+		return forumPostReport;
+	}
+
+	public void setForumPostReport(Set<ForumPostReportVO> forumPostReport) {
+		this.forumPostReport = forumPostReport;
 	}
 
 	public Integer getPostId() {
@@ -179,13 +187,5 @@ public class ForumPostVO implements Serializable{
 	public void setPostStatus(Integer postStatus) {
 		this.postStatus = postStatus;
 	}
-	
-	public ForumVO getForumVO() {
-		return forumVO;
-	}
 
-	public void setForumVO(ForumVO forumVO) {
-		this.forumVO = forumVO;
-	}
-	
 }

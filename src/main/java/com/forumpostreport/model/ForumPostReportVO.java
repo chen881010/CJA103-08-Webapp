@@ -20,44 +20,44 @@ public class ForumPostReportVO implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "REPORT_ID", updatable = false)
+	@Column(name = "report_id", updatable = false)
 	private Integer reportId;
 	
-	@Column(name = "MEM_ID", updatable = false)
+	@Column(name = "mem_id", updatable = false)
 	private Integer memId;
 	
 	@ManyToOne
-	@JoinColumn(name = "POST_ID", referencedColumnName = "POST_ID")
-	private ForumPostVO forumPostVO;
+	@JoinColumn(name = "post_id", referencedColumnName = "post_id")
+	private ForumPostVO forumPost;
 	
-//	@Column(name = "POST_ID", updatable = false)
+//	@Column(name = "post_id", updatable = false)
 //	private Integer postId;
 	
-	@Column(name = "REPORT_TYPE")
+	@Column(name = "report_type")
 	private Integer reportType;
 	
-	@Column(name = "REPORT_REASON")
+	@Column(name = "report_reason")
 	private String reportReason;
 	
-	@Column(name = "REPORT_STATUS", insertable = false)
+	@Column(name = "report_status", insertable = false)
 	private Integer reportStatus;
 	
-	@Column(name = "REPORT_TIME", insertable = false)
+	@Column(name = "report_time", insertable = false)
 	private Timestamp reportTime;
 	
-	@Column(name = "HANDLE_TIME", insertable = false)
+	@Column(name = "handle_time", insertable = false)
 	private Timestamp handleTime;
 	
 	public ForumPostReportVO() {
 		super();
 	}
 
-	public ForumPostVO getForumPostVO() {
-		return forumPostVO;
+	public ForumPostVO getForumPost() {
+		return forumPost;
 	}
 
-	public void setForumPostVO(ForumPostVO forumPostVO) {
-		this.forumPostVO = forumPostVO;
+	public void setForumPost(ForumPostVO forumPost) {
+		this.forumPost = forumPost;
 	}
 
 	public Integer getReportId() {

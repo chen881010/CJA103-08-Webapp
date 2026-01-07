@@ -19,29 +19,29 @@ public class ForumPostPicVO implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "PIC_ID", updatable = false)
+	@Column(name = "pic_id", updatable = false)
 	private Integer picId;
 	
 	@ManyToOne
-	@JoinColumn(name = "POST_ID", referencedColumnName = "POST_ID")
-	private ForumPostVO forumPostVO;
+	@JoinColumn(name = "post_id", referencedColumnName = "post_id")
+	private ForumPostVO forumPost;
 	
-//	@Column(name = "POST_ID", updatable = false)
+//	@Column(name = "post_id", updatable = false)
 //	private Integer postId;
 	
-	@Column(name = "PIC", columnDefinition = "longblob")
+	@Column(name = "pic", columnDefinition = "longblob")
 	private byte[] pic;
-	
-	public ForumPostVO getForumPostVO() {
-		return forumPostVO;
-	}
-
-	public void setForumPostVO(ForumPostVO forumPostVO) {
-		this.forumPostVO = forumPostVO;
-	}
 
 	public ForumPostPicVO() {
 		super();
+	}
+
+	public ForumPostVO getForumPost() {
+		return forumPost;
+	}
+
+	public void setForumPost(ForumPostVO forumPost) {
+		this.forumPost = forumPost;
 	}
 
 	public Integer getPicId() {

@@ -25,48 +25,56 @@ public class ForumPostCommentVO implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "COMMENT_ID", updatable = false)
+	@Column(name = "comment_id", updatable = false)
 	private Integer commentId;
 	
-	@Column(name = "MEM_ID", updatable = false)
+	@Column(name = "mem_id", updatable = false)
 	private Integer memId;
 	
 	@ManyToOne
-	@JoinColumn(name = "POST_ID", referencedColumnName = "POST_ID")
-	private ForumPostVO forumPostVO;
+	@JoinColumn(name = "post_id", referencedColumnName = "post_id")
+	private ForumPostVO forumPost;
 	
-	@OneToMany(mappedBy = "forumPostCommentVO", cascade = CascadeType.REFRESH)
-	@OrderBy("reportId asc")
-	private Set<ForumCommentReportVO> forumCommentReportVO;
-	
-//	@Column(name = "POST_ID", updatable = false)
+//	@Column(name = "post_id", updatable = false)
 //	private Integer postId;
 	
-	@Column(name = "COMMENT_CONTENT")
+	@OneToMany(mappedBy = "forumPostComment", cascade = CascadeType.ALL)
+	@OrderBy("reportId asc")
+	private Set<ForumCommentReportVO> forumCommentReport;
+	
+	@Column(name = "comment_content")
 	private String commentContent;
 	
-	@Column(name = "COMMENT_PIC", columnDefinition = "longblob")
+	@Column(name = "comment_pic", columnDefinition = "longblob")
 	private byte[] commentPic;
 	
-	@Column(name = "CREATED_AT", updatable = false, insertable = false)
+	@Column(name = "created_at", updatable = false, insertable = false)
 	private Timestamp createdAt;
 	
-	@Column(name = "LAST_EDITED_AT", insertable = false)
+	@Column(name = "last_edited_at", insertable = false)
 	private Timestamp lastEditedAt;
 	
-	@Column(name = "COMMENT_STATUS", insertable = false)
+	@Column(name = "comment_status", insertable = false)
 	private Integer commentStatus;
 	
 	public ForumPostCommentVO() {
 		super();
 	}
 
-	public ForumPostVO getForumPostVO() {
-		return forumPostVO;
+	public ForumPostVO getForumPost() {
+		return forumPost;
 	}
 
-	public void setForumPostVO(ForumPostVO forumPostVO) {
-		this.forumPostVO = forumPostVO;
+	public void setForumPost(ForumPostVO forumPost) {
+		this.forumPost = forumPost;
+	}
+
+	public Set<ForumCommentReportVO> getForumCommentReport() {
+		return forumCommentReport;
+	}
+
+	public void setForumCommentReport(Set<ForumCommentReportVO> forumCommentReport) {
+		this.forumCommentReport = forumCommentReport;
 	}
 
 	public Integer getCommentId() {

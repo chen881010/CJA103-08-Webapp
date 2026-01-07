@@ -21,44 +21,44 @@ public class ForumCommentReportVO implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "REPORT_ID", updatable = false)
+	@Column(name = "report_id", updatable = false)
 	private Integer reportId;
 	
-	@Column(name = "MEM_ID", updatable = false)
+	@Column(name = "mem_id", updatable = false)
 	private Integer memId;
 	
 	@ManyToOne
-	@JoinColumn(name = "COMMENT_ID", referencedColumnName = "COMMENT_ID")
-	private ForumPostCommentVO forumPostCommentVO;
+	@JoinColumn(name = "comment_id", referencedColumnName = "comment_id")
+	private ForumPostCommentVO forumPostComment;
 	
-//	@Column(name = "COMMENT_ID", updatable = false)
+//	@Column(name = "comment_id", updatable = false)
 //	private Integer commentId;
 	
-	@Column(name = "REPORT_TYPE")
+	@Column(name = "report_type")
 	private Integer reportType;
 	
-	@Column(name = "REPORT_REASON")
+	@Column(name = "report_reason")
 	private String reportReason;
 	
-	@Column(name = "REPORT_STATUS", insertable = false)
+	@Column(name = "report_status", insertable = false)
 	private Integer reportStatus;
 	
-	@Column(name = "REPORT_TIME", insertable = false)
+	@Column(name = "report_time", insertable = false)
 	private Timestamp reportTime;
 	
-	@Column(name = "HANDLE_TIME", insertable = false)
+	@Column(name = "handle_time", insertable = false)
 	private Timestamp handleTime;
 	
 	public ForumCommentReportVO() {
 		super();
 	}
 
-	public ForumPostCommentVO getForumPostCommentVO() {
-		return forumPostCommentVO;
+	public ForumPostCommentVO getForumPostComment() {
+		return forumPostComment;
 	}
 
-	public void setForumPostCommentVO(ForumPostCommentVO forumPostCommentVO) {
-		this.forumPostCommentVO = forumPostCommentVO;
+	public void setForumPostComment(ForumPostCommentVO forumPostComment) {
+		this.forumPostComment = forumPostComment;
 	}
 
 	public Integer getReportId() {

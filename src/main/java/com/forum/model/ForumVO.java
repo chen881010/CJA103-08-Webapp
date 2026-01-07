@@ -6,7 +6,6 @@ import java.util.Set;
 
 import com.forumpost.model.ForumPostVO;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,35 +21,35 @@ public class ForumVO implements Serializable{
 		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "FORUM_ID", updatable = false)
+	@Column(name = "forum_id", updatable = false)
 	private Integer forumId;
 	
-	@Column(name = "FORUM_NAME")
+	@Column(name = "forum_name")
 	private String forumName;
 	
-	@Column(name = "CREATED_AT", insertable = false, updatable = false)
+	@Column(name = "created_at", insertable = false, updatable = false)
 	private Timestamp createdAt;
 	
-	@Column(name = "FORUM_PIC", columnDefinition = "longblob")
+	@Column(name = "forum_pic", columnDefinition = "longblob")
 	private byte[] forumPic;
 	
-	@Column(name = "FORUM_STATUS", insertable = false)
+	@Column(name = "forum_status", insertable = false)
 	private Integer forumStatus;
 	
-	@OneToMany(mappedBy = "forumVO", cascade = CascadeType.REFRESH)
+	@OneToMany(mappedBy = "forum")
 	@OrderBy("postId desc")
-	private Set<ForumPostVO> forumPostVO;
+	private Set<ForumPostVO> forumPost;
 	
 	public ForumVO() {
 		super();
 	}
 
-	public Set<ForumPostVO> getForumPostVO() {
-		return forumPostVO;
+	public Set<ForumPostVO> getForumPost() {
+		return forumPost;
 	}
 
-	public void setForumPostVO(Set<ForumPostVO> forumPostVO) {
-		this.forumPostVO = forumPostVO;
+	public void setForumPost(Set<ForumPostVO> forumPost) {
+		this.forumPost = forumPost;
 	}
 
 	public Integer getForumId() {
