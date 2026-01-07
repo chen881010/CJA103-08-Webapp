@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 import java.sql.Timestamp;
 
+import com.forumpostcomment.model.ForumPostCommentVO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,8 +27,12 @@ public class ForumCommentReportVO implements Serializable{
 	@Column(name = "MEM_ID", updatable = false)
 	private Integer memId;
 	
-	@Column(name = "COMMENT_ID", updatable = false)
-	private Integer commentId;
+	@ManyToOne
+	@JoinColumn(name = "COMMENT_ID", referencedColumnName = "COMMENT_ID")
+	private ForumPostCommentVO forumPostCommentVO;
+	
+//	@Column(name = "COMMENT_ID", updatable = false)
+//	private Integer commentId;
 	
 	@Column(name = "REPORT_TYPE")
 	private Integer reportType;
@@ -45,17 +53,12 @@ public class ForumCommentReportVO implements Serializable{
 		super();
 	}
 
-	public ForumCommentReportVO(Integer reportId, Integer memId, Integer commentId, Integer reportType,
-			String reportReason, Integer reportStatus, Timestamp reportTime, Timestamp handleTime) {
-		super();
-		this.reportId = reportId;
-		this.memId = memId;
-		this.commentId = commentId;
-		this.reportType = reportType;
-		this.reportReason = reportReason;
-		this.reportStatus = reportStatus;
-		this.reportTime = reportTime;
-		this.handleTime = handleTime;
+	public ForumPostCommentVO getForumPostCommentVO() {
+		return forumPostCommentVO;
+	}
+
+	public void setForumPostCommentVO(ForumPostCommentVO forumPostCommentVO) {
+		this.forumPostCommentVO = forumPostCommentVO;
 	}
 
 	public Integer getReportId() {
@@ -74,13 +77,13 @@ public class ForumCommentReportVO implements Serializable{
 		this.memId = memId;
 	}
 
-	public Integer getCommentId() {
-		return commentId;
-	}
-
-	public void setCommentId(Integer commentId) {
-		this.commentId = commentId;
-	}
+//	public Integer getCommentId() {
+//		return commentId;
+//	}
+//
+//	public void setCommentId(Integer commentId) {
+//		this.commentId = commentId;
+//	}
 
 	public Integer getReportType() {
 		return reportType;

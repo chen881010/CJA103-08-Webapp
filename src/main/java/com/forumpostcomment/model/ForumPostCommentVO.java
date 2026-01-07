@@ -2,12 +2,21 @@ package com.forumpostcomment.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Set;
 
+import com.forumcommentreport.model.ForumCommentReportVO;
+import com.forumpost.model.ForumPostVO;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,8 +31,16 @@ public class ForumPostCommentVO implements Serializable{
 	@Column(name = "MEM_ID", updatable = false)
 	private Integer memId;
 	
-	@Column(name = "POST_ID", updatable = false)
-	private Integer postId;
+	@ManyToOne
+	@JoinColumn(name = "POST_ID", referencedColumnName = "POST_ID")
+	private ForumPostVO forumPostVO;
+	
+	@OneToMany(mappedBy = "forumPostCommentVO", cascade = CascadeType.REFRESH)
+	@OrderBy("reportId asc")
+	private Set<ForumCommentReportVO> forumCommentReportVO;
+	
+//	@Column(name = "POST_ID", updatable = false)
+//	private Integer postId;
 	
 	@Column(name = "COMMENT_CONTENT")
 	private String commentContent;
@@ -44,17 +61,12 @@ public class ForumPostCommentVO implements Serializable{
 		super();
 	}
 
-	public ForumPostCommentVO(Integer commentId, Integer memId, Integer postId, String commentContent,
-			byte[] commentPic, Timestamp createdAt, Timestamp lastEditedAt, Integer commentStatus) {
-		super();
-		this.commentId = commentId;
-		this.memId = memId;
-		this.postId = postId;
-		this.commentContent = commentContent;
-		this.commentPic = commentPic;
-		this.createdAt = createdAt;
-		this.lastEditedAt = lastEditedAt;
-		this.commentStatus = commentStatus;
+	public ForumPostVO getForumPostVO() {
+		return forumPostVO;
+	}
+
+	public void setForumPostVO(ForumPostVO forumPostVO) {
+		this.forumPostVO = forumPostVO;
 	}
 
 	public Integer getCommentId() {
@@ -73,13 +85,13 @@ public class ForumPostCommentVO implements Serializable{
 		this.memId = memId;
 	}
 
-	public Integer getPostId() {
-		return postId;
-	}
-
-	public void setPostId(Integer postId) {
-		this.postId = postId;
-	}
+//	public Integer getPostId() {
+//		return postId;
+//	}
+//
+//	public void setPostId(Integer postId) {
+//		this.postId = postId;
+//	}
 
 	public String getCommentContent() {
 		return commentContent;
