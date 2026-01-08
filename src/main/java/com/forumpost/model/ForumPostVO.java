@@ -68,7 +68,7 @@ public class ForumPostVO implements Serializable{
 	@OrderBy("commentId asc")
 	private Set<ForumPostCommentVO> forumPostComment;
 	
-	@OneToMany(mappedBy = "forumPost", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "forumPost")
 	@OrderBy("reportId asc")
 	private Set<ForumPostReportVO> forumPostReport;
 	
